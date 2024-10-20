@@ -1,0 +1,29 @@
+%%{init: {"theme": "neutral", "flowchart": {"htmlLabels": true}}}%%
+
+flowchart TD
+    subgraph "Fuzzer"
+        subgraph runtime["Runtime (<i>«dynamic»</i>)"]
+            instrumentation["Instrumentation<br/>(<i>«in an instrumented ... fashion»</i>)"]
+            optimisation["Optimisations<br/>(<i>«in an ... optimised fashion»</i>)"]
+        end
+
+        subgraph mutator["Mutator"]
+            randomness["Randomness<br/>(<i>«eventually random»</i>)"]
+            formatter["Formatter<br/>(<i>«formatted or unformatted inputs»</i>)"]
+        end
+
+        runtime -- Feedback<br/>(<i>«tailored»)</i> --> mutator
+
+        runtime -->
+        watcher["Watcher (<i>«to detect»</i>)"]
+    
+    end
+
+    initial_corpus[("Initial corpus<br/>(<i>«eventually based on an initial corpus»</i>)")] --> mutator
+
+    sut[<i>«Software under test»</i>] -->
+    harness[<i>«Harness»</i>] --> runtime
+
+    profit[("<i>«Unexpected behaviours such as crashes, assertions, memory leaks, race conditions and undefined behaviours»</i>")]
+
+    watcher --> profit
