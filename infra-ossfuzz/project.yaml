@@ -1,25 +1,40 @@
-homepage: "https://github.com/test"
-main_repo: "https://github.com/test.git"
-# help_url:
+# See more: https://google.github.io/oss-fuzz/getting-started/new-project-guide/#projectyaml
+
+# Homepage
+homepage: "https://www.openssl.org"
+
+# Source code repository
+main_repo: "https://github.com/openssl/openssl"
+
+# Language in which the project is written
 language: c++
 
-primary_contact: "test@test.com"
-auto_ccs:
-  - "test@test.com"
-# vendor_ccs:
+# Primary contact receiving the reports
+primary_contact: "oss-fuzz@openssl.com"
 
+# Other contacts to be CCed
+auto_ccs: []
+
+# Vendor email addresses that are downstream consumers of the project and want access to the bug reports as they are filed
+vendor_ccs: []
+
+# List of architectures to fuzz on: x86_64 or i386
 architectures:
   - x86_64
-  # - i386
 
+# List of sanitizers to use: address, memory, or undefined
 sanitizers:
-  - address
-  # - memory
-  # - undefined   
+  - address 
 
+# list of fuzzing engines to use: libfuzzer, afl, honggfuzz, and centipede
 fuzzing_engines:
   - libfuzzer
-  # - afl
-  # - honggfuzz
 
-# builds_per_day: 2
+# Number of times the project should be built per day (up to 4)
+builds_per_day: 1
+
+# Link to a custom help URL that appears in bug reports instead of the default OSS-Fuzz guide to reproducing crashes
+help_url: "https://github.com/openssl/openssl/blob/master/fuzz/README.md"
+
+# Whether to mirror issues on github instead of having them only in the OSS-Fuzz tracker
+file_github_issue: false
