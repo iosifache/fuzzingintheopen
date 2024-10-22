@@ -1,0 +1,25 @@
+homepage: "https://github.com/test"
+main_repo: "https://github.com/test.git"
+# help_url:
+language: c++
+
+primary_contact: "test@test.com"
+auto_ccs:
+  - "test@test.com"
+# vendor_ccs:
+
+architectures:
+  - x86_64
+  # - i386
+
+sanitizers:
+  - address
+  # - memory
+  # - undefined   
+
+fuzzing_engines:
+  - libfuzzer
+  # - afl
+  # - honggfuzz
+
+# builds_per_day: 2
