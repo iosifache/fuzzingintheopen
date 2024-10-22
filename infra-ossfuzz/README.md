@@ -1,5 +1,13 @@
 # New OSS-Fuzz Project - Heartbleed
 
+## Generate the certificates
+
+We already have the certs, so you can skip this.
+
+```bash
+openssl req -x509 -newkey rsa:512 -keyout server.key -out server.pem -days 9999 -nodes -subj /CN=a/
+```
+
 ## New
 ```bash
 export PROJECT_NAME="heartbleed"
