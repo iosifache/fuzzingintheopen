@@ -34,4 +34,4 @@ $CXX $CXXFLAGS target.cc -DCERT_PATH="./" ../libssl.a ../libcrypto.a $LIB_FUZZIN
 cp openssl-fuzzer $OUT
 popd
 
-cp $SRC/runtime $OUT
+cp -r $SRC/runtime $OUT
