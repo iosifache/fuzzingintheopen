@@ -21,7 +21,7 @@ RUN cp -rf /src /build && \
     ./config && make clean && make
 
 RUN mkdir -p /out
-COPY runtime /out/
+COPY runtime /out/runtime
 COPY target.cc /out/
 
 RUN cd /out && $CXX $CXXFLAGS target.cc -DCERT_PATH="./" /build/libssl.a /build/libcrypto.a $LIB_FUZZING_ENGINE -I /build/include -o $OUTPUT
