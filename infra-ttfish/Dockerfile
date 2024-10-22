@@ -18,10 +18,11 @@ ENV CC=clang \
 
 RUN cp -rf /src /build && \
     cd /build && \
-    ./config && make clean && make
+    CC="$CC $CFLAGS" ./config && make clean && make
 
-RUN mkdir -p /out
+RUN mkdir /out
+RUN mkdir /out/runtime
 COPY runtime /out/runtime
-COPY target.cc /out/
+COPY target.cc poc /out/
 
 RUN cd /out && $CXX $CXXFLAGS target.cc -DCERT_PATH="./" /build/libssl.a /build/libcrypto.a $LIB_FUZZING_ENGINE -I /build/include -o $OUTPUT
