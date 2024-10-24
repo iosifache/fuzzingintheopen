@@ -8,6 +8,14 @@ We already have the certs, so you can skip this.
 openssl req -x509 -newkey rsa:512 -keyout server.key -out server.pem -days 9999 -nodes -subj /CN=a/
 ```
 
+## For local container
+```bash
+docker build -t fuzzingintheopen . 
+docker run -it -v ./out:/out fuzzingintheopen /bin/bash
+bash ../build.sh # or docker run -v ./out:/out fuzzingintheopen ../build.sh
+docker run -it -v ./out:/out fuzzingintheopen /out/openssl-fuzzer # run fuzzer
+```
+
 ## New
 
 ```bash

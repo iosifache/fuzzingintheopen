@@ -20,9 +20,9 @@ export CC=clang
 export CXX=clang++
 export CFLAGS="$CFLAGS -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope"
 export CXXFLAGS="$CXXFLAGS -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope"
+export LIB_FUZZING_ENGINE="-fsanitize=fuzzer"
 
 # build project
-
 CC="$CC $CFLAGS" ./config
 make
 

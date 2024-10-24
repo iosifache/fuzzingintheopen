@@ -33,4 +33,4 @@ WORKDIR openssl
 COPY build.sh target.cc $SRC/
 
 # Copy the artefacts required for running the harness
-COPY -r runtime $SRC/runtime
+COPY runtime $SRC/runtime
