@@ -24,6 +24,6 @@ This repository contains all materials used for the "*Fuzzing in the open: Integ
 
 # Hosts
 
-- @DonggeLiu
-- @ttfish
-- @iosifache
+- [@DonggeLiu](https://github.com/DonggeLiu)
+- [@fish98](https://github.com/fish98)
+- [@iosifache](https://github.com/iosifache)
