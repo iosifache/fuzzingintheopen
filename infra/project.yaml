@@ -26,7 +26,7 @@ architectures:
 sanitizers:
   - address 
 
-# list of fuzzing engines to use: libfuzzer, afl, honggfuzz, and centipede
+# List of fuzzing engines to use: libfuzzer, afl, honggfuzz, and centipede
 fuzzing_engines:
   - libfuzzer
 
