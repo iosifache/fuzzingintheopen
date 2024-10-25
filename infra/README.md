@@ -12,12 +12,13 @@ We already have the certs, so you can skip this.
 openssl req -x509 -newkey rsa:512 -keyout server.key -out server.pem -days 9999 -nodes -subj /CN=a/
 ```
 
-### For local container
+### Verify our code
 ```bash
-docker build -t fuzzingintheopen . 
-docker run -it -v out:/out fuzzingintheopen /bin/bash
-(in container) bash ../build.sh  # or (outside contianer) docker run -v out:/out fuzzingintheopen ../build.sh
-(in container) /out/openssl-fuzzer # or (outside contianer) docker run -it -v out:/out fuzzingintheopen /out/openssl-fuzzer # run fuzzer
+cd fuzzingintheopen/infra
+docker build -t fuzzingintheopen .
+docker run -it -v "$(pwd)/out":/out fuzzingintheopen /bin/bash
+(in container) bash ../build.sh  # or (outside contianer) docker run -v "$(pwd)/out":/out fuzzingintheopen ../build.sh
+(in container) /out/openssl-fuzzer # or (outside contianer) docker run -it -v "$(pwd)/out":/out fuzzingintheopen /out/openssl-fuzzer # run fuzzer
 ```
 
 ## Intigrate to OSS-Fuzz
