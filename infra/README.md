@@ -17,8 +17,10 @@ openssl req -x509 -newkey rsa:512 -keyout server.key -out server.pem -days 9999 
 cd fuzzingintheopen/infra
 docker build -t fuzzingintheopen .
 docker run -it -v "$(pwd)/out":/out fuzzingintheopen /bin/bash
+# Build fuzzer
 (in container) bash ../build.sh  # or (outside contianer) docker run -v "$(pwd)/out":/out fuzzingintheopen ../build.sh
-(in container) /out/openssl-fuzzer # or (outside contianer) docker run -it -v "$(pwd)/out":/out fuzzingintheopen /out/openssl-fuzzer # run fuzzer
+# Run fuzzer
+(in container) /out/openssl-fuzzer # or (outside contianer) docker run -it -v "$(pwd)/out":/out fuzzingintheopen /out/openssl-fuzzer 
 ```
 
 ## Intigrate to OSS-Fuzz
