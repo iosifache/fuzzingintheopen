@@ -15,23 +15,26 @@
 #
 ################################################################################
 
-# ENV
+# Configures
 export CC=clang
 export CXX=clang++
 export CFLAGS="$CFLAGS -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope"
 export CXXFLAGS="$CXXFLAGS -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope"
 export LIB_FUZZING_ENGINE="-fsanitize=fuzzer"
 
-# build project
+# Builds the project
 CC="$CC $CFLAGS" ./config
 make
 
+# Copy the harness
 mkdir fuzzer
 cp $SRC/target.cc fuzzer
 
+# Build the harness
 pushd fuzzer
 $CXX $CXXFLAGS target.cc -DCERT_PATH="./" ../libssl.a ../libcrypto.a $LIB_FUZZING_ENGINE -I ../include -o openssl-fuzzer
 cp openssl-fuzzer $OUT
 popd
 
+# Copy the certs
 cp -r $SRC/runtime $OUT
