@@ -22,6 +22,13 @@ This repository contains all materials used for the "*Fuzzing in the open: Integ
 > 
 > Intrigued? Join us to help increase the number of bugs detected by OSS-Fuzz by participating in the workshop and starting to fuzz your projects!
 
+# Setup
+
+```bash
+$ git clone https://github.com/google/oss-fuzz
+$ git clone http://github.com/iosifache/fuzzingintheopen
+```
+
 # Hosts
 
 - [@DonggeLiu](https://github.com/DonggeLiu)
