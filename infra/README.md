@@ -1,6 +1,10 @@
 # New OSS-Fuzz Project - Heartbleed
 
-## Generate the certificates
+## Prepare our code
+
+Verify that our `Dockerfile`, build script and fuzz target(s) work well.
+
+### Generate the certificates
 
 We already have the certs, so you can skip this.
 
@@ -8,30 +12,29 @@ We already have the certs, so you can skip this.
 openssl req -x509 -newkey rsa:512 -keyout server.key -out server.pem -days 9999 -nodes -subj /CN=a/
 ```
 
-## For local container
+### For local container
 ```bash
 docker build -t fuzzingintheopen . 
-docker run -it -v ./out:/out fuzzingintheopen /bin/bash
-bash ../build.sh # or docker run -v ./out:/out fuzzingintheopen ../build.sh
-docker run -it -v ./out:/out fuzzingintheopen /out/openssl-fuzzer # run fuzzer
+docker run -it -v out:/out fuzzingintheopen /bin/bash
+(in container) bash ../build.sh  # or (outside contianer) docker run -v out:/out fuzzingintheopen ../build.sh
+(in container) /out/openssl-fuzzer # or (outside contianer) docker run -it -v out:/out fuzzingintheopen /out/openssl-fuzzer # run fuzzer
 ```
 
-## New
+## Intigrate to OSS-Fuzz
+
+### Clone OSS-Fuzz and create project
 
 ```bash
+# Assuming we are in the parent directory of fuzzingintheopen.
+git clone https://github.com/google/oss-fuzz.git
+cd oss-fuzz
 export PROJECT_NAME="heartbleed"
 export LANGUAGE=c++
 python infra/helper.py generate $PROJECT_NAME --language=$LANGUAGE
+cp -r ../fuzzingintheopen/infra/* oss-fuzz/projects/heartbleed
 ```
 
-## Clone OSS-Fuzz
-
-```bash
-git clone https://github.com/google/oss-fuzz.git
-cp -r ./infra-ossfuzz oss-fuzz/projects/heartbleed
-```
-
-## Build harness
+### Build harness
 
 ```bash
 python infra/helper.py build_fuzzers --sanitizer address --engine libfuzzer --architecture x86_64 heartbleed
