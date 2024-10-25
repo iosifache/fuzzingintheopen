@@ -25,7 +25,7 @@ SSL_CTX *Init() {
   return sctx;
 }
 
-extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
+extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
   static SSL_CTX *sctx = Init();
   SSL *server = SSL_new(sctx);
   BIO *sinbio = BIO_new(BIO_s_mem());
@@ -33,8 +33,11 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
 
   SSL_set_bio(server, sinbio, soutbio);
   SSL_set_accept_state(server);
-  BIO_write(sinbio, Data, Size);
+
+  // Fuzz
+  BIO_write(sinbio, data, size);
   SSL_do_handshake(server);
+
   SSL_free(server);
 
   return 0;
