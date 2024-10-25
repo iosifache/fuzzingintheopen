@@ -17,6 +17,9 @@
 # Set the base image
 FROM gcr.io/oss-fuzz-base/base-builder
 
+# Define an argument
+ARG patched
+
 # Install the dependencies for OpenSSL
 RUN apt-get update && apt-get install -y make autoconf automake libtool clang
 
@@ -25,6 +28,8 @@ RUN git clone https://github.com/openssl/openssl.git openssl
 
 # Checkout at a state where the codebase is vulnerable to Heartbleed
 RUN cd openssl && git checkout OpenSSL_1_0_1f
+
+# TODO: Apply the patch
 
 # Set the working directory
 WORKDIR openssl
