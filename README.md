@@ -25,8 +25,11 @@ This repository contains all materials used for the "*Fuzzing in the open: Integ
 # Setup
 
 ```bash
-$ git clone https://github.com/google/oss-fuzz
-$ git clone http://github.com/iosifache/fuzzingintheopen
+# Clone the OSS-Fuzz repository
+git clone https://github.com/google/oss-fuzz
+
+# Clone this repository
+git clone http://github.com/iosifache/fuzzingintheopen
 ```
 
 # Hosts
