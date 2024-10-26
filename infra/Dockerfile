@@ -29,10 +29,13 @@ RUN git clone https://github.com/openssl/openssl.git openssl
 # Checkout at a state where the codebase is vulnerable to Heartbleed
 RUN cd openssl && git checkout OpenSSL_1_0_1f
 
-# TODO: Apply the patch
-
 # Set the working directory
 WORKDIR openssl
+
+# TODO: Apply the patch
+# COPY heartbleed.patch .
+# RUN git apply heartbleed.patch
+
 
 # Copy the build script
 COPY build.sh target.cc $SRC/
