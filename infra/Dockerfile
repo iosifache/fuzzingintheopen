@@ -17,9 +17,6 @@
 # Set the base image
 FROM gcr.io/oss-fuzz-base/base-builder
 
-# Define an argument
-ARG patched
-
 # Install the dependencies for OpenSSL
 RUN apt-get update && apt-get install -y make autoconf automake libtool clang
 
